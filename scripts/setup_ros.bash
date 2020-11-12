@@ -17,14 +17,16 @@ installRosMelodic() {
     sudo apt-get install -y ros-melodic-rosbridge-server    
     sudo apt-get install -y python3-pip python3-yaml
     sudo apt-get install -y python-catkin-tools
+    sudo apt-get install -y python-rosdep
     sudo pip3 install rospkg catkin_pkg
 
     # Enable resourcing the ROS environment everytime you open a terminal
-    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc    
+    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc       
 }
 
 installRosNoetic() {
     
+    sudo apt-get install python3-rosdep
     echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc    
 }
 
@@ -47,7 +49,12 @@ else
         echo "You have Ubuntu 20.04 and therefore ROS noetic will be installed"
         installRosNoetic
     fi
+    
+    # Execute rosdep only if it was newly installed
+    sudo rosdep init
 fi
+
+echo "export PATH=/usr/lib/ccache:$PATH" >> ~/.bashrc    
 
 # Execute Source 
 source ~/.bashrc
