@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# Check if the required variables exist
+if [ -n "${USE_OWN_PC_AS_ROS_MASTER}" ]; then
+    echo "Setup ok" 
+else
+    echo "Required env variables for this to work not found, adding them to bashrc"
+    sed -i '2 i export USE_OWN_PC_AS_ROS_MASTER=1' ~/.bashrc
+    sed -i '2 i export USE_IP_NR=0' ~/.bashrc
+    sed -i '2 i export ROS_MASTER_IP=' ~/.bashrc
+fi
+
+
+echo "Available IPS:"
+
+count=1
+declare -a IPS=($(hostname -I))
+
+for ip in "${IPS[@]}"; do
+	
+	echo $count  " => " $ip
+
+	((count++))
+done
+
+echo " ==== loopback ==== "
+echo $count  " =>  127.0.0.1"
+
+
+read -r -p "Set rosmaster to your own ip? [Y/n] " response
+response=${response,,} # tolower
+
+
+if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
+
+
+        read -e -p "Give the ip to set to from the above list: [1]"  IP
+        
+        if [ -z $IP  ] ; then
+            IP=1
+        fi
+        
+        ((IP--))
+
+
+        echo "Changing the USE_IP_NR var in  bashrc to:" $IP " that will result in"  ${IPS[IP]}
+        
+        sed -i "s/USE_OWN_PC_AS_ROS_MASTER=.*/USE_OWN_PC_AS_ROS_MASTER=1/" ~/.bashrc
+        sed -i "s/USE_IP_NR=.*/USE_IP_NR=$IP/" ~/.bashrc
+else
+    
+    echo "Setting ip to other machine"
+    
+    read -e -p "Select subnet from list [1]"  IP
+        
+    if [  -z $IP  ] ; then
+        IP=1
+    fi
+    
+    ((IP--))
+
+    read -e -p "Give last number of required ip for rosmaster  [2]"  IPLAST
+        
+    if [  -z  $IPLAST ] ; then
+        IPLAST=2
+    fi
+    
+    baseip=`echo ${IPS[IP]} | cut -d"." -f1-3`
+    baseip="$baseip.$IPLAST"
+    echo $baseip
+    
+     sed -i "s/USE_OWN_PC_AS_ROS_MASTER=.*/USE_OWN_PC_AS_ROS_MASTER=0/" ~/.bashrc
+    
+     sed -i "s/USE_IP_NR=.*/USE_IP_NR=$IP/" ~/.bashrc
+     sed -i "s/ROS_MASTER_IP=.*/ROS_MASTER_IP=$baseip/" ~/.bashrc
+    
+       
+    
+fi
+echo "Changing ROS Master, please wait..."
+bash
+
+
+
+
+
+
+~
+
