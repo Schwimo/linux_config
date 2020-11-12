@@ -14,6 +14,9 @@ fi
 # Install Git
 sudo apt-get install -y git
 
+# Install Tmux
+sudo apt-get install -y tmux
+
 # Install Bash-IT
 BASH_IT="/home/$USER/.bash_it/"
 if [ -d "$BASH_IT" ]; then
@@ -29,9 +32,9 @@ fi
 git clone https://github.com/Schwimo/linux_config /home/$USER/linux_config
 
 # Exchange the .bashrc
-cp /home/$USER/linux_config/files/.bashrc ~/.bashrc
-cp /home/$USER/linux_config/files/.tmux.conf ~/.tmux.conf
-cp -r /home/$USER/linux_config/files/.tmux ~/.tmux
+cp /home/$USER/linux_config/configs/.bashrc ~/.bashrc
+cp /home/$USER/linux_config/configs/.tmux.conf ~/.tmux.conf
+cp -r /home/$USER/linux_config/configs/.tmux ~/.tmux
 
 sudo rm -r /home/$USER/linux_config
 
@@ -43,5 +46,7 @@ read mail
 
 git config --global user.name $username
 git config --global user.email $mail
+
+git config credential.helper store
 
 bash
