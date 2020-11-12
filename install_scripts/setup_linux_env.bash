@@ -38,13 +38,10 @@ sudo rm -r /home/$USER/linux_config
 # Get github credentials
 echo "Enter github username :"
 read username
-echo "Enter github password :"
-read -s pass
 echo "Enter github mail :"
 read mail
 
 git config --global user.name $username
-git config --global user.password $pass
 git config --global user.email $mail
 
 bash
