@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Check if the required variables exist
 if [ -n "${USE_OWN_PC_AS_ROS_MASTER}" ]; then
     echo "Setup ok" 
@@ -8,7 +9,6 @@ else
     sed -i '2 i export USE_IP_NR=0' ~/.bashrc
     sed -i '2 i export ROS_MASTER_IP=' ~/.bashrc
 fi
-
 
 echo "Available IPS:"
 
@@ -25,13 +25,10 @@ done
 echo " ==== loopback ==== "
 echo $count  " =>  127.0.0.1"
 
-
 read -r -p "Set rosmaster to your own ip? [Y/n] " response
 response=${response,,} # tolower
 
-
 if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-
 
         read -e -p "Give the ip to set to from the above list: [1]"  IP
         
@@ -40,7 +37,6 @@ if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
         fi
         
         ((IP--))
-
 
         echo "Changing the USE_IP_NR var in  bashrc to:" $IP " that will result in"  ${IPS[IP]}
         
@@ -68,21 +64,11 @@ else
     baseip="$baseip.$IPLAST"
     echo $baseip
     
-     sed -i "s/USE_OWN_PC_AS_ROS_MASTER=.*/USE_OWN_PC_AS_ROS_MASTER=0/" ~/.bashrc
+    sed -i "s/USE_OWN_PC_AS_ROS_MASTER=.*/USE_OWN_PC_AS_ROS_MASTER=0/" ~/.bashrc
     
-     sed -i "s/USE_IP_NR=.*/USE_IP_NR=$IP/" ~/.bashrc
-     sed -i "s/ROS_MASTER_IP=.*/ROS_MASTER_IP=$baseip/" ~/.bashrc
-    
-       
+    sed -i "s/USE_IP_NR=.*/USE_IP_NR=$IP/" ~/.bashrc
+    sed -i "s/ROS_MASTER_IP=.*/ROS_MASTER_IP=$baseip/" ~/.bashrc
     
 fi
 echo "Changing ROS Master, please wait..."
 bash
-
-
-
-
-
-
-~
-

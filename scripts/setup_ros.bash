@@ -31,7 +31,7 @@ installRosNoetic() {
 }
 
 # Check if ros is already installed
-if checkCommand "rosversiond"; then    
+if checkCommand "rosversion"; then    
     
     echo "ROS $(rosversion -d) is already installed on your machine."
 
@@ -54,7 +54,7 @@ else
     sudo rosdep init
 fi
 
-echo "export PATH=/usr/lib/ccache:$PATH" >> ~/.bashrc    
+echo "source /home/$USER/dev/linux_config/scripts/extend_env_ros.bash --extend"
 
 # Execute Source 
 source ~/.bashrc
