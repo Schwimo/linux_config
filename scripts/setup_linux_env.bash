@@ -47,6 +47,4 @@ read mail
 git config --global user.name $username
 git config --global user.email $mail
 
-git config credential.helper store
-
 bash
