@@ -8,8 +8,6 @@ mkdir -p /home/$USER/dev/phand/python_libs
 # Change directory
 cd /home/$USER/dev/phand/python_libs
 
-git config credential.helper store
-
 # Clone the relevant python library repositories
 git clone https://github.com/Schwimo/bionic-message-tools
 git clone https://github.com/Schwimo/bionic-pid-control
