@@ -14,7 +14,8 @@ installRosMelodic() {
     sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
     sudo apt-get update
     sudo apt-get install -y ros-melodic-desktop-full
-    sudo apt-get install -y ros-melodic-rosbridge-server    
+    sudo apt-get install -y ros-melodic-rosbridge-server   
+    sudo apt-get install -y ros-melodic-plotjuggler 
     sudo apt-get install -y python3-pip python3-yaml
     sudo apt-get install -y python-catkin-tools
     sudo apt-get install -y python-rosdep
