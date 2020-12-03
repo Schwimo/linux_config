@@ -34,7 +34,7 @@ This will execute the following steps:
 3. Install other ROS tools like the webbridge
 4. Source your ROS distro
 
-# Setup BionicSoftHand
+# Setup BionicSoftHand with ROS
 
 Execute the following command to download and start the shell script:
 ```

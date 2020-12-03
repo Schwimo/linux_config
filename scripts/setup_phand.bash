@@ -24,6 +24,7 @@ pip3 install --editable /home/$USER/dev/phand/python_libs/phand-python-libs
 cd /home/$USER/dev/phand/phand_ws/src
 git clone https://github.com/Schwimo/phand-ros
 cd /home/$USER/dev/phand/phand_ws/
+
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 
