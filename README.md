@@ -1,7 +1,6 @@
 
 * [Core Linux config installation](#Core-Linux-config-script)
 * [ROS setup script](#ROS-setup-script)
-* [Setup the BionicSoftHand](#Setup-BionicSoftHand)
 <br></br>
 
 # Core Linux config script
