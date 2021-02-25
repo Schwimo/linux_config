@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Git
-sudo apt-get install -y git
+apt-get install -y git
 
 # Install Bash-IT
 BASH_IT="/home/$USER/.bash_it/"
@@ -22,6 +22,6 @@ cp /root/linux_config/configs/.bashrc ~/.bashrc
 cp /root/linux_config/configs/.tmux.conf ~/.tmux.conf
 cp -r /root/linux_config/configs/.tmux ~/.tmux
 
-sudo rm -r /root/linux_config
+rm -r /root/linux_config
 
 bash
