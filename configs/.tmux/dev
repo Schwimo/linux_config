@@ -1,18 +1,13 @@
 selectp -t 0 # select the first (0) pane
-splitw -h -p 50 # split it into two halves
+splitw -h -p 20 # split it into two halves
 selectp -t 0 # select the first (0) pane
 splitw -v -p 60 # split it into two halves 
 
-
-selectp -t 2 # select the new, second (1) pane
-#splitw -v -p 50 # split it into two halves
-#splitw -v -p 50 # split it into two halves
 selectp -t 0 # go back to the first pane
+splitw -h -p 50 # split it into two halves 
 send-keys 'htop' C-m 
-
-send-keys -t .+ 'cdw; gs' C-m
-
-
+selectp -t 0 # go to the second pane
+send-keys 'watch -n 0.5 nvidia-smi' C-m
 
 
 ######################
@@ -113,4 +108,3 @@ set -g message-fg colour232
 set -g message-bg colour166
 
 # }
-
