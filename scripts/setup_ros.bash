@@ -26,8 +26,15 @@ installRosMelodic() {
 }
 
 installRosNoetic() {
+    sudo apt-get install -y ros-noetic-desktop
+    sudo apt-get install -y ros-noetic-rosbridge-server   
+    sudo apt-get install -y ros-noetic-plotjuggler 
+    sudo apt-get install -y python3-pip python3-yaml
+    sudo apt-get install -y python3-catkin-tools
+    sudo apt-get install -y python3-rosdep
     
-    sudo apt-get install python3-rosdep
+    sudo pip3 install rospkg catkin_pkg
+    # Enable resourcing the ROS environment everytime you open a terminal
     echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc    
 }
 
